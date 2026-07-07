@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260701-03-7ea5fa3"}');</script><script src="/_sdk/e4192b04afde3ce7.telemetry_sdk.js" integrity="sha512-4eZpyKBd3YJnsIPrIpaBqo7QT5UZ6+KSFXkSu1IQiB7jKM8y67ChRhZ5Yh6JfuOJCbPdISiNcS6nLKZzIMG1uQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodie Order</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Fraunces:wght@600;700&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/48bf7c4c70d0d03c.data_sdk.js" integrity="sha512-e/yrQJz+prdXXt4yUvxXhl1WBGu3BRkP8X0fipGXI5gqiFClI7wI6K3TQnD7d63vx+BVhwzIvY6r8OrpX7lXJA=="></script>
+  <style>
+  body { font-family: 'DM Sans', sans-serif; }
+  .font-display { font-family: 'Fraunces', serif; }
+  .drawer { transition: transform .35s cubic-bezier(.4,0,.2,1); }
+  .drawer.closed { transform: translateX(100%); }
+  .overlay { transition: opacity .3s; }
+  .overlay.hidden-o { opacity: 0; pointer-events: none; }
+  .menu-card { opacity: 0; transform: translateY(16px); animation: rise .5s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { animation: spin .8s linear infinite; }
+</style>
+  <script src="/_sdk/5d8c692e132d2125.resizing_sdk.js" type="text/javascript" integrity="sha512-/Du3Fqe12kKsCd3BrbaNQEPtMxQi9S5hbJhnTf09AAilpqYsGa4N0rnimSX1Ui4dwNElKlen6VlI+E1n/NEfrA=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen w-full text-neutral-900" style="background: rgb(255, 248, 243);"><!-- Header -->
+  <header data-template-id="site-header" class="canva-header w-full sticky top-0 z-30 shadow-sm" style="background: rgb(226, 55, 68);">
+   <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
+    <div class="flex items-baseline gap-2"><span data-template-id="brand-name" class="canva-text font-display leading-none" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 26px;">Foodie</span> <span data-template-id="brand-tagline" class="canva-text hidden sm:inline" style="color: rgb(255, 224, 226); font-weight: 400; font-style: normal; font-size: 14px;">Order in. Feast on.</span>
+    </div><button id="cart-open-btn" class="relative flex items-center gap-2 px-4 py-2 rounded-full font-medium" data-template-id="cart-open-btn" aria-label="Open cart" style="background: rgb(184, 31, 43); color: rgb(255, 255, 255); font-weight: 600;"> <i data-lucide="shopping-bag" style="width:18px;height:18px;"></i> <span class="hidden sm:inline">Cart</span> <span id="cart-badge" class="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-white text-red-600 text-xs font-bold flex items-center justify-center hidden">0</span> </button>
+   </div>
+  </header><!-- Hero -->
+  <section data-template-id="hero-section" class="canva-section relative w-full overflow-hidden" style="background: rgb(42, 21, 18);"><img data-template-id="hero-image" loading="lazy" class="canva-image absolute inset-0 w-full h-full object-cover" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Colorful spread of fresh, healthy food">
+   <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+   <div class="relative max-w-6xl mx-auto px-5 py-20 md:py-28">
+    <h1 data-template-id="hero-title" class="canva-text font-display max-w-xl leading-tight text-white" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px;">Authentic Indian flavours, delivered hot</h1>
+    <p data-template-id="hero-subtitle" class="canva-text mt-4 max-w-md text-white/90" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 17px;">From sizzling tandoori to sweet gulab jamun — your favourites, just a few taps away.</p><button onclick="document.getElementById('menu-section').scrollIntoView({behavior:'smooth'})" data-template-id="hero-cta" class="canva-button mt-7 px-6 py-3 rounded-full font-semibold" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Browse Menu</button>
+   </div>
+  </section><!-- Menu -->
+  <main id="menu-section" class="w-full max-w-6xl mx-auto px-5 py-14">
+   <h2 data-template-id="menu-title" class="canva-text font-display mb-8" style="color: rgb(42, 21, 18); font-weight: 700; font-style: normal; font-size: 24px;">Our Menu</h2>
+   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"><!-- 7 bound dish cards -->
+    <article data-template-id="dish-1" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.05s; background: rgb(255, 255, 255);"><img data-template-id="dish-1-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Indian curry garnished with cilantro served with naan in a copper dish">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-1-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Butter Chicken</h3>
+      <p data-template-id="dish-1-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Tender chicken in a creamy tomato-butter gravy.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-1-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹320</span> <button data-template-id="dish-1-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="1" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-2" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.1s; background: rgb(255, 255, 255);"><img data-template-id="dish-2-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Chicken biryani served with onion rings, lime and yogurt dip">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-2-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Chicken Biryani</h3>
+      <p data-template-id="dish-2-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Fragrant basmati rice layered with spiced chicken.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-2-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹280</span> <button data-template-id="dish-2-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="2" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-3" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.15s; background: rgb(255, 255, 255);"><img data-template-id="dish-3-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/9609838/pexels-photo-9609838.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Creamy paneer makhani garnished with herbs">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-3-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Paneer Makhani</h3>
+      <p data-template-id="dish-3-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Soft paneer cubes in a rich, mildly spiced gravy.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-3-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹260</span> <button data-template-id="dish-3-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="3" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-4" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.2s; background: rgb(255, 255, 255);"><img data-template-id="dish-4-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Traditional dosa served with chutneys and sambar on banana leaves">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-4-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Masala Dosa</h3>
+      <p data-template-id="dish-4-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Crispy rice crepe stuffed with spiced potato.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-4-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹150</span> <button data-template-id="dish-4-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="4" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-5" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.25s; background: rgb(255, 255, 255);"><img data-template-id="dish-5-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/37153389/pexels-photo-37153389.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Golden-brown fried samosas showcasing crispy texture">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-5-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Samosa (2 pcs)</h3>
+      <p data-template-id="dish-5-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Golden pastry parcels with a spiced potato filling.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-5-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹80</span> <button data-template-id="dish-5-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="5" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-6" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.3s; background: rgb(255, 255, 255);"><img data-template-id="dish-6-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/29259167/pexels-photo-29259167.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Gulab jamun in a traditional bowl with almonds">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-6-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Gulab Jamun</h3>
+      <p data-template-id="dish-6-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Warm milk dumplings soaked in rose-cardamom syrup.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-6-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹120</span> <button data-template-id="dish-6-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="6" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+    <article data-template-id="dish-7" class="canva-card menu-card rounded-2xl overflow-hidden shadow-md flex flex-col" style="animation-delay: 0.35s; background: rgb(255, 255, 255);"><img data-template-id="dish-7-img" loading="lazy" class="canva-image w-full h-44 object-cover" src="https://images.pexels.com/photos/5775684/pexels-photo-5775684.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Indian thali showcasing traditional cuisine with various dishes">
+     <div class="p-5 flex flex-col flex-1">
+      <h3 data-template-id="dish-7-name" class="canva-text font-semibold" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 19px;">Veg Thali</h3>
+      <p data-template-id="dish-7-desc" class="canva-text mt-1 text-sm flex-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">A wholesome platter of curries, dal, rice and bread.</p>
+      <div class="mt-4 flex items-center justify-between"><span data-template-id="dish-7-price" class="canva-text font-bold" style="color: rgb(226, 55, 68); font-weight: 400; font-style: normal; font-size: 18px;">₹240</span> <button data-template-id="dish-7-add" class="canva-button add-btn px-4 py-2 rounded-full text-sm font-semibold" data-id="7" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Add</button>
+      </div>
+     </div>
+    </article>
+   </div>
+  </main><!-- Footer -->
+  <footer data-template-id="site-footer" class="canva-footer w-full mt-6" style="background: rgb(42, 21, 18);">
+   <div class="max-w-6xl mx-auto px-5 py-8 text-center">
+    <p data-template-id="footer-text" class="canva-text text-sm" style="color: rgb(216, 201, 194); font-weight: 400; font-style: normal; font-size: 13px;">© 2026 Foodie. Made with love for good food. Sample ordering experience.</p>
+   </div>
+  </footer><!-- Overlay -->
+  <div id="overlay" class="overlay hidden-o fixed inset-0 bg-black/50 z-40" onclick="closeAll()"></div><!-- Cart Drawer -->
+  <aside id="cart-drawer" data-template-id="cart-drawer" class="canva-panel drawer closed fixed top-0 right-0 h-full w-full max-w-md z-50 shadow-2xl flex flex-col" style="height: calc(100 * min(var(--vh,1vh),1vh)); background: rgb(255, 255, 255);">
+   <div class="flex items-center justify-between px-5 py-4 border-b border-black/10">
+    <h2 data-template-id="cart-title" class="canva-text font-display" style="color: rgb(42, 21, 18); font-weight: 700; font-style: normal; font-size: 24px;">Your Cart</h2><button onclick="closeAll()" aria-label="Close cart" class="p-2 rounded-full hover:bg-black/5"><i data-lucide="x"></i></button>
+   </div>
+   <div class="flex-1 overflow-y-auto px-5 py-4">
+    <p id="cart-empty" data-template-id="cart-empty" class="canva-text text-center py-16 text-neutral-500" style="color: rgb(154, 144, 139); font-weight: 400; font-style: normal; font-size: 16px;">Your cart is empty. Add some delicious dishes!</p>
+    <div id="cart-items" class="space-y-4"></div>
+   </div>
+   <div class="border-t border-black/10 px-5 py-4 space-y-2">
+    <div class="flex justify-between text-sm"><span data-template-id="cart-subtotal-label" class="canva-text" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Subtotal</span> <span id="cart-subtotal" class="font-medium">₹0</span>
+    </div>
+    <div class="flex justify-between text-sm"><span data-template-id="cart-delivery-label" class="canva-text" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Delivery fee</span> <span id="cart-delivery" class="font-medium">₹0</span>
+    </div>
+    <div class="flex justify-between text-lg font-bold pt-1"><span data-template-id="cart-total-label" class="canva-text" style="color: rgb(42, 21, 18); font-weight: 700; font-style: normal; font-size: 16px;">Total</span> <span id="cart-total">₹0</span>
+    </div><button id="checkout-btn" data-template-id="cart-checkout-btn" class="canva-button w-full mt-2 py-3 rounded-xl font-semibold disabled:opacity-50" disabled="" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Proceed to Checkout</button>
+   </div>
+  </aside><!-- Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/50 overflow-y-auto">
+   <div data-template-id="checkout-modal" class="canva-panel w-full max-w-lg rounded-2xl shadow-2xl my-8 max-h-full overflow-y-auto" style="background: rgb(255, 255, 255);">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-black/10">
+     <h2 data-template-id="checkout-title" class="canva-text font-display" style="color: rgb(42, 21, 18); font-weight: 700; font-style: normal; font-size: 24px;">Checkout</h2><button onclick="closeCheckout()" aria-label="Close checkout" class="p-2 rounded-full hover:bg-black/5"><i data-lucide="x"></i></button>
+    </div>
+    <form id="checkout-form" class="px-6 py-5 space-y-6"><!-- Profile -->
+     <fieldset><legend data-template-id="profile-heading" class="canva-text font-semibold mb-3" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 17px;">Your Details</legend>
+      <div class="grid sm:grid-cols-2 gap-4">
+       <div><label data-template-id="name-label" for="cust-name" class="canva-text block text-sm mb-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Full name</label> <input id="cust-name" type="text" class="w-full px-3 py-2 rounded-lg border border-black/15 focus:outline-none focus:ring-2 focus:ring-red-400" required="">
+       </div>
+       <div><label data-template-id="phone-label" for="cust-phone" class="canva-text block text-sm mb-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Phone number</label> <input id="cust-phone" type="tel" class="w-full px-3 py-2 rounded-lg border border-black/15 focus:outline-none focus:ring-2 focus:ring-red-400" required="">
+       </div>
+      </div>
+     </fieldset><!-- Address -->
+     <fieldset><legend data-template-id="address-heading" class="canva-text font-semibold mb-3" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 17px;">Delivery Address</legend> <label data-template-id="address-label" for="cust-address" class="canva-text block text-sm mb-1" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Street, area, city &amp; pincode</label> <textarea id="cust-address" rows="3" class="w-full px-3 py-2 rounded-lg border border-black/15 focus:outline-none focus:ring-2 focus:ring-red-400" required=""></textarea>
+     </fieldset><!-- Order summary -->
+     <div class="rounded-xl bg-black/5 p-4">
+      <p data-template-id="summary-heading" class="canva-text font-semibold mb-2" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 16px;">Order Summary</p>
+      <div id="summary-items" class="space-y-1 text-sm"></div>
+      <div class="flex justify-between font-bold mt-3 pt-2 border-t border-black/10"><span data-template-id="summary-total-label" class="canva-text" style="color: rgb(42, 21, 18); font-weight: 400; font-style: normal; font-size: 16px;">Total</span> <span id="summary-total">₹0</span>
+      </div>
+     </div><!-- Payment -->
+     <fieldset><legend data-template-id="payment-heading" class="canva-text font-semibold mb-2" style="color: rgb(42, 21, 18); font-weight: 600; font-style: normal; font-size: 17px;">Payment</legend>
+      <p data-template-id="payment-note" class="canva-text text-sm text-neutral-500 mb-3" style="color: rgb(154, 144, 139); font-weight: 400; font-style: normal; font-size: 16px;">Card payment is a demo and opens a secure external page in a new tab. No card details are collected here. You can also pay Cash on Delivery.</p><a href="https://razorpay.com" target="_blank" rel="noopener noreferrer" data-template-id="pay-link-btn" class="canva-button flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold mb-3" style="background: rgb(31, 41, 55); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Pay via secure link (Demo)</a>
+     </fieldset>
+     <p id="form-error" class="text-sm text-red-600 hidden"></p><button type="submit" id="place-order-btn" data-template-id="place-order-btn" class="canva-button flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold disabled:opacity-60" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Place Order (Cash on Delivery)</button>
+    </form>
+   </div>
+  </div><!-- Success Panel -->
+  <div id="success-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-black/50">
+   <div data-template-id="success-panel" class="canva-panel w-full max-w-sm rounded-2xl shadow-2xl p-8 text-center" style="background: rgb(255, 255, 255);">
+    <div class="w-16 h-16 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-4"><i data-lucide="check" style="width:34px;height:34px;color:#16a34a;"></i>
+    </div>
+    <h2 data-template-id="success-title" class="canva-text font-display mb-2" style="color: rgb(42, 21, 18); font-weight: 700; font-style: normal; font-size: 24px;">Order Placed!</h2>
+    <p data-template-id="success-msg" class="canva-text text-neutral-600 mb-6" style="color: rgb(107, 100, 97); font-weight: 400; font-style: normal; font-size: 16px;">Thank you! Your order has been saved and our kitchen is on it. You'll receive it hot and fresh soon.</p><button onclick="closeSuccess()" data-template-id="success-btn" class="canva-button w-full py-3 rounded-xl font-semibold" style="background: rgb(226, 55, 68); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Done</button>
+   </div>
+  </div><!-- Cart line item template -->
+  <template id="cart-item-template">
+   <div class="cart-line flex items-center gap-3"><img class="line-img w-14 h-14 rounded-lg object-cover flex-shrink-0" loading="lazy">
+    <div class="flex-1 min-w-0">
+     <p class="line-name font-medium text-sm truncate"></p>
+     <p class="line-price text-xs text-neutral-500"></p>
+    </div>
+    <div class="flex items-center gap-2"><button class="dec w-7 h-7 rounded-full bg-black/5 flex items-center justify-center" aria-label="Decrease">−</button> <span class="qty w-5 text-center text-sm font-semibold"></span> <button class="inc w-7 h-7 rounded-full bg-black/5 flex items-center justify-center" aria-label="Increase">+</button>
+    </div>
+   </div>
+  </template>
+  <script src="/_sdk/7395a30b3453963f.editing_sdk.js" integrity="sha512-anMP2CGgmjTrBjYYA5HoQqgmlvkMVGOwa7Tbl+RkQuzxCegwznSoyZd4OdabUjysA29ZAREErXKS4mFM1f45bQ=="></script>
+  <script>
+    lucide.createIcons();
+
+    // Menu data lives in JS for logic; display text/prices/images are config-driven on the cards.
+    // Prices here drive cart math and must match the card price labels in config.json.
+    const MENU = {
+      '1': { name: 'Butter Chicken', price: 320, img: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '2': { name: 'Chicken Biryani', price: 280, img: 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '3': { name: 'Paneer Makhani', price: 260, img: 'https://images.pexels.com/photos/9609838/pexels-photo-9609838.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '4': { name: 'Masala Dosa', price: 150, img: 'https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '5': { name: 'Samosa (2 pcs)', price: 80, img: 'https://images.pexels.com/photos/37153389/pexels-photo-37153389.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '6': { name: 'Gulab Jamun', price: 120, img: 'https://images.pexels.com/photos/29259167/pexels-photo-29259167.jpeg?auto=compress&cs=tinysrgb&w=400' },
+      '7': { name: 'Veg Thali', price: 240, img: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400' }
+    };
+    const DELIVERY_FEE = 40;
+    const cart = {}; // id -> qty
+    let orderCount = 0;
+
+    const inr = n => '₹' + n.toLocaleString('en-IN');
+    const overlay = document.getElementById('overlay');
+    const drawer = document.getElementById('cart-drawer');
+
+    function totals() {
+      let subtotal = 0, count = 0;
+      for (const id in cart) { subtotal += MENU[id].price * cart[id]; count += cart[id]; }
+      const delivery = count > 0 ? DELIVERY_FEE : 0;
+      return { subtotal, delivery, total: subtotal + delivery, count };
+    }
+
+    function updateBadge() {
+      const { count } = totals();
+      const badge = document.getElementById('cart-badge');
+      badge.textContent = count;
+      badge.classList.toggle('hidden', count === 0);
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cart-items');
+      const empty = document.getElementById('cart-empty');
+      const ids = Object.keys(cart);
+      empty.style.display = ids.length ? 'none' : 'block';
+
+      const existing = new Map([...list.children].map(el => [el.dataset.id, el]));
+      ids.forEach(id => {
+        let el = existing.get(id);
+        if (!el) {
+          el = document.getElementById('cart-item-template').content.firstElementChild.cloneNode(true);
+          el.dataset.id = id;
+          el.querySelector('.line-img').src = MENU[id].img;
+          el.querySelector('.line-img').alt = MENU[id].name;
+          el.querySelector('.line-name').textContent = MENU[id].name;
+          el.querySelector('.dec').addEventListener('click', () => changeQty(id, -1));
+          el.querySelector('.inc').addEventListener('click', () => changeQty(id, 1));
+          list.appendChild(el);
+        }
+        el.querySelector('.qty').textContent = cart[id];
+        el.querySelector('.line-price').textContent = inr(MENU[id].price) + ' each';
+        existing.delete(id);
+      });
+      existing.forEach(el => el.remove());
+
+      const t = totals();
+      document.getElementById('cart-subtotal').textContent = inr(t.subtotal);
+      document.getElementById('cart-delivery').textContent = inr(t.delivery);
+      document.getElementById('cart-total').textContent = inr(t.total);
+      document.getElementById('checkout-btn').disabled = t.count === 0;
+      updateBadge();
+    }
+
+    function changeQty(id, delta) {
+      cart[id] = (cart[id] || 0) + delta;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', () => { changeQty(btn.dataset.id, 1); openCart(); });
+    });
+
+    function openCart() {
+      drawer.classList.remove('closed');
+      overlay.classList.remove('hidden-o');
+    }
+    function closeAll() {
+      drawer.classList.add('closed');
+      overlay.classList.add('hidden-o');
+    }
+    document.getElementById('cart-open-btn').addEventListener('click', openCart);
+
+    // Checkout
+    const checkoutModal = document.getElementById('checkout-modal');
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      closeAll();
+      renderSummary();
+      checkoutModal.classList.remove('hidden');
+      checkoutModal.classList.add('flex');
+    });
+    function closeCheckout() {
+      checkoutModal.classList.add('hidden');
+      checkoutModal.classList.remove('flex');
+    }
+    window.closeCheckout = closeCheckout;
+    window.closeAll = closeAll;
+
+    function renderSummary() {
+      const box = document.getElementById('summary-items');
+      box.innerHTML = '';
+      for (const id in cart) {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between';
+        const label = document.createElement('span');
+        label.textContent = MENU[id].name + ' × ' + cart[id];
+        const val = document.createElement('span');
+        val.textContent = inr(MENU[id].price * cart[id]);
+        row.append(label, val);
+        box.appendChild(row);
+      }
+      document.getElementById('summary-total').textContent = inr(totals().total);
+    }
+
+    function itemsSummaryString() {
+      return Object.keys(cart).map(id => `${MENU[id].name} x${cart[id]}`).join(', ');
+    }
+
+    // Data SDK
+    const handler = {
+      onDataChanged(data) { orderCount = data.length; }
+    };
+    (async () => {
+      const res = await window.dataSdk.init(handler);
+      if (!res.isOk) console.error('data init failed');
+    })();
+
+    const form = document.getElementById('checkout-form');
+    const placeBtn = document.getElementById('place-order-btn');
+    const errEl = document.getElementById('form-error');
+
+    function showErr(msg) { errEl.textContent = msg; errEl.classList.remove('hidden'); }
+    function clearErr() { errEl.classList.add('hidden'); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErr();
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      if (!name || !phone || !address) { showErr('Please fill in your name, phone and address.'); return; }
+      if (!/^[0-9+\-\s]{7,15}$/.test(phone)) { showErr('Please enter a valid phone number.'); return; }
+      if (totals().count === 0) { showErr('Your cart is empty.'); return; }
+      if (orderCount >= 999) { showErr('Order limit reached. Please try again later.'); return; }
+
+      const original = placeBtn.textContent;
+      placeBtn.disabled = true;
+      placeBtn.innerHTML = '<span class="inline-block w-5 h-5 border-2 border-white/40 border-t-white rounded-full spinner"></span>';
+
+      const result = await window.dataSdk.create({
+        type: 'order',
+        name, phone, address,
+        items: itemsSummaryString(),
+        total: totals().total,
+        created_at: new Date().toISOString()
+      });
+
+      placeBtn.disabled = false;
+      placeBtn.textContent = original;
+
+      if (result.isOk) {
+        for (const id in cart) delete cart[id];
+        renderCart();
+        form.reset();
+        closeCheckout();
+        const sm = document.getElementById('success-modal');
+        sm.classList.remove('hidden'); sm.classList.add('flex');
+      } else {
+        showErr('Something went wrong placing your order. Please try again.');
+      }
+    });
+
+    function closeSuccess() {
+      const sm = document.getElementById('success-modal');
+      sm.classList.add('hidden'); sm.classList.remove('flex');
+    }
+    window.closeSuccess = closeSuccess;
+
+    document.getElementById('pay-link-btn').addEventListener('click', () => {
+      // opens external processor in new tab via anchor target=_blank; demo only
+    });
+
+    renderCart();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a142c6b53511a931',t:'MTc4Mjg4MTI4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body></html>
